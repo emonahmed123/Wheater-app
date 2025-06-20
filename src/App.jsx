@@ -1,7 +1,19 @@
 import "./App.css";
+import Header from "./components/header/Header";
+import WeatherBoard from "./components/weather/WeatherBoard";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Header />
+
+      <main>
+        <section class="">
+          <WeatherBoard />
+        </section>
+      </main>
+    </>
+  );
 }
 
 export default App;
