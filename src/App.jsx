@@ -4,15 +4,15 @@ import WeatherBoard from "./components/weather/WeatherBoard";
 
 function App() {
   return (
-    <>
+    <div className="grid place-items-center h-screen lg:pt-30 2xl:pt-0">
       <Header />
 
       <main>
-        <section class="">
+        <section>
           <WeatherBoard />
         </section>
       </main>
-    </>
+    </div>
   );
 }
 
