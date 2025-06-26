@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useWeather = () => {
     const [weatherData, setWeatherData] = useState({
@@ -32,11 +32,11 @@ const useWeather = () => {
             setLoading({
                 ...loading,
                 state: true,
-
-                meassage: "Fetching wether data "
+                message: "Fetching wether data "
             })
 
-            const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${import.meta.env.VITE_WEATER_API_KEY}&units=metric`);
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${import.meta.env.VITE_WEATER_API_KEY}&units=metric`
+            );
             if (!response.ok) {
                 const errorMessage = `Fetching weather data failed: ${response.status}`;
                 throw new Error(errorMessage);
@@ -60,19 +60,35 @@ const useWeather = () => {
 
         }
         catch (err) {
-            console.log(err)
+            setError(err)
         }
         finally {
             setLoading({
                 ...loading,
-                state: true,
+                state: false,
 
                 meassage: ""
             })
         }
 
     }
+    useEffect(() => {
+        setLoading({
 
+            state: true,
+            meassage: "Finding location..."
+        })
+        navigator.geolocation.getCurrentPosition(function (position) {
+            fetchWeaterhData(position.coords.latitude, position.coords.longitude)
+        })
+    }, [])
 
+    return {
+        weatherData,
+        error,
+        loading
+    }
 
 }
+
+export default useWeather
