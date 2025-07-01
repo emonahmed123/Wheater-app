@@ -1,4 +1,4 @@
+import FavouriteProvider from "./FavoriteProvider";
 import WeaterProvider from "./WederProvider";
-
-export { WeaterProvider };
+export { FavouriteProvider, WeaterProvider };
 

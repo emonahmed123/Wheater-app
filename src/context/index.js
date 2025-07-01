@@ -2,7 +2,7 @@ import { createContext, useContext } from "react"
 
 const WeatherContext = createContext("")
 
-
+const FavouriteContext = createContext("")
 
 
 
@@ -11,5 +11,5 @@ const useWeatherContext = () => {
 
 }
 
-export { useWeatherContext, WeatherContext }
+export { FavouriteContext, useWeatherContext, WeatherContext }
 
