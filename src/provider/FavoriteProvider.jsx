@@ -3,11 +3,11 @@ import { useLocalStorage } from "../hooks";
 const FavouriteProvider = ({ children }) => {
   const [favourites, setFavourites] = useLocalStorage("favourites", []);
 
-  const addToFavourites = (latiude, longitude, location) => {
+  const addToFavourites = (latitude, longitude, location) => {
     setFavourites([
       ...favourites,
       {
-        latiude: latiude,
+        latitude: latitude,
         longitude: longitude,
         location: location,
       },

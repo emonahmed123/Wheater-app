@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RedHeartIcon from "../../assets/heart-red.svg";
 import HeartIcon from "../../assets/heart.svg";
 import { FavouriteContext, useWeatherContext } from "../../context";
@@ -7,18 +7,23 @@ const AddToFavarate = () => {
     useContext(FavouriteContext);
   const [isFavouriteToggle, setIsFavouriteToggle] = useState(false);
   const { weatherData } = useWeatherContext();
-  const { latiude, longitude, location } = weatherData;
+  const { latitude, longitude, location } = weatherData;
 
   function handleAddToFavourites() {
     const found = favourites.find((fa) => fa.location === location);
 
     if (!found) {
-      addToFavourites(latiude, longitude, location);
+      addToFavourites(latitude, longitude, location);
     } else {
       removeFromFavourites(location);
     }
     setIsFavouriteToggle(!isFavouriteToggle);
   }
+
+  useEffect(() => {
+    const found = favourites.find((fa) => fa.location === location);
+    setIsFavouriteToggle(found);
+  }, [favourites, location]);
 
   return (
     <div className="flex items-center justify-end space-x-6">
